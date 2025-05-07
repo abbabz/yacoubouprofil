@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Yacoubou Issaka IIIo</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script defer src="main.js"></script>
+</head>
+<body>
+<header>
+    <h1>Portfolio - Yacoubou Issaka IIIo</h1>
+    <nav>
+        <ul class="links">
+            <li><a href="#about">À propos</a></li>
+            <li><a href="#skills">Compétences</a></li>
+            <li><a href="#experience">Expérience</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <button id="toggle-theme">Mode Nuit</button>
+        </ul>
+        </div>
+    <div class="menu-toggle">
+        <i class="fas fa-bars"></i>
+    </div>
+    </nav>
+</header>
+
+<div id="three-container"></div> <!-- Contiendra la scène 3D -->
+
+<main>
+    <section id="about" class="about">
+        <div class="left">
+            <h3>Fiscaliste junior – Comptabilité et fiscalité des entreprises</h3>
+            <div class="info">
+                <h2>Je suis Yacoubou Issaka <strong>IIIo</strong></h2>
+                <p>Fiscaliste junior diplômé d'un Master en fiscalité, avec une expérience en cabinet de conseil sur la gestion fiscale et comptable de clients variés.</p>
+                <div class="buttons">
+                    <button class="email">Copier Email <i class="far fa-copy"></i></button>
+                </div>
+            </div>
+        </div>
+        <div class="right">
+            <img src="profil.jpg" alt="Profile Picture">
+        </div>
+    </section>
+
+    <section id="skills" class="skills">
+        <h3>Compétences</h3>
+        <div class="skills-grid">
+            <div class="skill-item">
+                <i class="fas fa-file-invoice-dollar"></i>
+                <h4>Fiscalité des entreprises</h4>
+                <p>Maîtrise des déclarations fiscales (TVA, IS, IRPP), optimisation fiscale, veille réglementaire.</p>
+            </div>
+            <div class="skill-item">
+                <i class="fas fa-calculator"></i>
+                <h4>Comptabilité générale</h4>
+                <p>Enregistrement des écritures, rapprochements bancaires, préparation des bilans et comptes de résultat.</p>
+            </div>
+            <div class="skill-item">
+                <i class="fas fa-chart-line"></i>
+                <h4>Analyse financière</h4>
+                <p>Lecture et interprétation des états financiers, suivi budgétaire, indicateurs de performance.</p>
+            </div>
+            <div class="skill-item">
+                <i class="fas fa-file-excel"></i>
+                <h4>Logiciels comptables</h4>
+                <p>Bonne maîtrise d'Excel (formules, tableaux croisés dynamiques), et familiarité avec des outils comme Sage Comptabilité.</p>
+            </div>
+            <div class="skill-item">
+                <i class="fas fa-user-shield"></i>
+                <h4>Rigueur & confidentialité</h4>
+                <p>Respect des délais, traitement rigoureux des données sensibles.</p>
+            </div>
+            <div class="skill-item">
+                <i class="fas fa-comments"></i>
+                <h4>Communication professionnelle</h4>
+                <p>Rédaction de rapports clairs, échanges efficaces avec les clients et l'administration fiscale.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience" class="experience">
+        <h3>Expériences Professionnelles</h3>
+        <div class="experience-grid">
+            <div class="experience-item">
+                <h4>Stagiaire Professionnel</h4>
+                <p class="company">A&H Consulting</p>
+                <p class="date">Octobre 2023 – Aujourd'hui</p>
+                <ul>
+                    <li>Déclarations fiscales périodiques pour PME</li>
+                    <li>Préparation de bilans financiers</li>
+                    <li>Suivi des obligations fiscales des clients</li>
+                </ul>
+            </div>
+            <div class="experience-item">
+                <h4>Stagiaire d'Étude</h4>
+                <p class="company">A&H Consulting</p>
+                <p class="date">Août 2022 – Octobre 2022</p>
+                <ul>
+                    <li>Traitement et analyse des données fiscales</li>
+                    <li>Préparation des déclarations de TVA et IS</li>
+                    <li>Appui administratif et comptable du cabinet</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="education" class="education">
+        <h3>Formation</h3>
+        <div class="education-grid">
+            <div class="education-item">
+                <h4>Master en Fiscalité</h4>
+                <p class="institute">Institut Supérieur de Finance (ISP) Sénégal</p>
+                <p class="date">2022</p>
+            </div>
+            <div class="education-item">
+                <h4>Licence en Comptabilité et Fiscalité</h4>
+                <p class="institute">HECF Niger</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <h3>Contactez-moi</h3>
+        <form action="mailto:yacoubouissaka97@gmail.com" method="post" enctype="text/plain">
+            <label for="name">Nom:</label>
+            <input type="text" id="name" name="name" required>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" required></textarea>
+            <button type="submit">Envoyer</button>
+        </form>
+    </section>
+    </br>
+    <section id="cv" class="cv">
+        <h3>Télécharger mon CV</h3>
+        <a href="yacouboucv.pdf" download class="cv-button">Télécharger CV (PDF)</a>
+    </section>
+</main>
+
+<footer>
+    <p>&copy; 2025 - Portfolio - Yacoubou Issaka IIIo</p>
+    <div class="socials">
+        <a href="tel:+22799090324"><i class="fas fa-phone"></i> +227-99090324</a>
+        <a href="mailto:yacoubouissaka97@gmail.com"><i class="fas fa-envelope"></i> Email</a>
+    </div>
+</footer>
+<script src="script.js"></script>
+<script src="script1.js"></script>
+<script src="script2.js"></script>
+</body>
+</html>
