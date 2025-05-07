@@ -5,109 +5,112 @@ const renderer = new THREE.WebGLRenderer({ antialias: true });
 renderer.setSize(window.innerWidth, window.innerHeight);
 document.getElementById('three-container').appendChild(renderer.domElement);
 
-// Ajout d'un effet de grille futuriste
-const gridHelper = new THREE.GridHelper(50, 50, 0x00ff00, 0x00ff00);
+// Couleur de fond professionnelle (bleu foncé/gris)
+scene.background = new THREE.Color(0x0a192f);
+
+// Ajout d'un effet de grille subtil
+const gridHelper = new THREE.GridHelper(30, 30, 0x1a3a6e, 0x1a3a6e);
+gridHelper.position.y = -5;
 scene.add(gridHelper);
 
-// Lumières futuristes
-const pointLight = new THREE.PointLight(0x00ffcc, 2, 50);
-pointLight.position.set(0, 5, 5);
-scene.add(pointLight);
+// Éclairage doux et professionnel
+const ambientLight = new THREE.AmbientLight(0x404040, 2);
+scene.add(ambientLight);
 
-// Création d'un réseau de particules (points lumineux)
+const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
+directionalLight.position.set(0, 1, 1);
+scene.add(directionalLight);
+
+// Particules discrètes (représentant des données financières)
 const particlesGeometry = new THREE.BufferGeometry();
-const particlesCount = 200;
+const particlesCount = 150;
 const positions = new Float32Array(particlesCount * 3);
+const colors = new Float32Array(particlesCount * 3);
+
 for (let i = 0; i < particlesCount * 3; i++) {
-    positions[i] = (Math.random() - 0.5) * 50;
+    positions[i] = (Math.random() - 0.5) * 40;
+    colors[i] = Math.random() * 0.5 + 0.5; // Nuances de bleu/blanc
 }
+
 particlesGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-const particlesMaterial = new THREE.PointsMaterial({ color: 0x00ffcc, size: 0.2 });
+particlesGeometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+
+const particlesMaterial = new THREE.PointsMaterial({
+    size: 0.3,
+    vertexColors: true,
+    transparent: true,
+    opacity: 0.8
+});
+
 const particleMesh = new THREE.Points(particlesGeometry, particlesMaterial);
 scene.add(particleMesh);
 
-// Liste des technologies avec leur image
+// Icônes professionnelles pour un fiscaliste
 const technologies = [
-    { name: "Docker", img: "docker.png", position: { x: -6, y: 3, z: -10 } },
-    { name: "Kubernetes", img: "kubernetes.png", position: { x: -2, y: 3, z: -10 } },
-    { name: "Nextcloud", img: "nextcloud.png", position: { x: 2, y: 3, z: -10 } },
-    { name: "Ansible", img: "ansible.png", position: { x: 6, y: 3, z: -10 } },
-    { name: "Terraform", img: "terraform.png", position: { x: -4, y: -1, z: -10 } },
-    { name: "Réseau", img: "network.png", position: { x: 0, y: -1, z: -10 } },
-    { name: "SDN", img: "sdn.png", position: { x: 4, y: -1, z: -10 } },
-    { name: "SD-WAN", img: "sd-wan.png", position: { x: 8, y: -1, z: -10 } }
+    { name: "Comptabilité", img: "accounting.png", position: { x: -6, y: 2, z: -8 } },
+    { name: "Fiscalité", img: "tax.png", position: { x: -2, y: 2, z: -8 } },
+    { name: "TVA", img: "vat.png", position: { x: 2, y: 2, z: -8 } },
+    { name: "Bilan", img: "balance.png", position: { x: 6, y: 2, z: -8 } },
+    { name: "Excel", img: "excel.png", position: { x: -4, y: -2, z: -8 } },
+    { name: "Sage", img: "sage.png", position: { x: 0, y: -2, z: -8 } },
+    { name: "Législation", img: "law.png", position: { x: 4, y: -2, z: -8 } },
+    { name: "Audit", img: "audit.png", position: { x: 8, y: -2, z: -8 } }
 ];
 
-// Charger les textures et créer les panneaux 3D
+// Charger les textures
 const textureLoader = new THREE.TextureLoader();
 const panels = [];
 
 technologies.forEach((tech) => {
-    const texture = textureLoader.load(tech.img);
-    const geometry = new THREE.PlaneGeometry(3, 3);  // Panneaux carrés 3D
-    const material = new THREE.MeshBasicMaterial({ map: texture, transparent: true });
-    const panel = new THREE.Mesh(geometry, material);
-
-    // Position des panneaux
-    panel.position.set(tech.position.x, tech.position.y, tech.position.z);
-    scene.add(panel);
-    panels.push(panel);
+    textureLoader.load(tech.img, (texture) => {
+        const geometry = new THREE.PlaneGeometry(2.5, 2.5);
+        const material = new THREE.MeshBasicMaterial({ 
+            map: texture, 
+            transparent: true,
+            opacity: 0.9
+        });
+        const panel = new THREE.Mesh(geometry, material);
+        
+        panel.position.set(tech.position.x, tech.position.y, tech.position.z);
+        scene.add(panel);
+        panels.push(panel);
+    });
 });
 
-// Animation principale
+// Animation fluide et professionnelle
 function animate() {
     requestAnimationFrame(animate);
 
-    // Faire tourner chaque panneau sur l'axe Y
+    // Rotation très lente des icônes
     panels.forEach(panel => {
-        panel.rotation.y += 0.01;  // Ajuste la vitesse de rotation ici
+        panel.rotation.y += 0.002;
     });
 
-    particleMesh.rotation.y += 0.001;  // Rotation des particules
+    // Mouvement subtil des particules
+    particleMesh.rotation.y += 0.0005;
+    
     renderer.render(scene, camera);
 }
 animate();
 
-// Ajustement de la caméra
-camera.position.z = 12;
+// Position initiale de la caméra
+camera.position.z = 15;
+camera.position.y = 2;
+
+// Gestion du redimensionnement
 window.addEventListener('resize', () => {
     renderer.setSize(window.innerWidth, window.innerHeight);
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
 });
 
-// Interaction : Rotation et Zoom sur un élément au clic
-document.addEventListener('click', (event) => {
-    const mouse = new THREE.Vector2();
-    const raycaster = new THREE.Raycaster();
-
-    // Convertir les coordonnées de la souris
-    mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
-    mouse.y = - (event.clientY / window.innerHeight) * 2 + 1;
-
-    // Vérifier s'il y a un panneau cliqué
-    raycaster.setFromCamera(mouse, camera);
-    const intersects = raycaster.intersectObjects(panels);
-
-    if (intersects.length > 0) {
-        const targetPanel = intersects[0].object;
-
-        // Animation du zoom et rotation
-        gsap.to(camera.position, {
-            z: 6,
-            x: targetPanel.position.x,
-            y: targetPanel.position.y,
-            duration: 1
-        });
-
-        // Retour automatique après 3 secondes
-        setTimeout(() => {
-            gsap.to(camera.position, {
-                z: 12,
-                x: 0,
-                y: 0,
-                duration: 1
-            });
-        }, 3000);
-    }
+// Interaction professionnelle au survol
+document.addEventListener('mousemove', (event) => {
+    const mouseX = (event.clientX / window.innerWidth) * 2 - 1;
+    const mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
+    
+    // Déplacement léger de la caméra
+    camera.position.x = mouseX * 0.5;
+    camera.position.y = mouseY * 0.5 + 2;
+    camera.lookAt(0, 0, 0);
 });
