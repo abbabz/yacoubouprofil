@@ -278,62 +278,53 @@ main {
     padding-left: 20px;
 }
 
+/* formation/éducation */
 
-/* Section Portfolio */
-.portfolio {
+.education {
     padding: 60px 42px;
-  /*  background: rgba(24, 24, 27, 0.8);*/
     border: 1px solid #27272A;
     border-radius: 14px;
-  /* backdrop-filter: blur(10px);*/
     margin-bottom: 20px;
 }
 
-.portfolio h3 {
+.education h3 {
     color: #BDBDBD;
     font-size: 24px;
     font-weight: 500;
     margin-bottom: 20px;
 }
 
-.portfolio-grid {
+.education-grid {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
     gap: 20px;
-    justify-content: center;
 }
 
-.portfolio-item {
+.education-item {
     background: rgba(255, 255, 255, 0.1);
     border: 1px solid #27272A;
     border-radius: 14px;
     padding: 20px;
-    max-width: 300px;
-    text-align: center;
-    transition: transform 0.3s ease;
 }
 
-.portfolio-item:hover {
-    transform: scale(1.05);
-}
-
-.portfolio-item img {
-    width: 100%;
-    border-radius: 14px;
-}
-
-.portfolio-item h4 {
+.education-item h4 {
     color: #fff;
     font-size: 20px;
-    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
-.portfolio-item p {
-    color: #BDBDBD;
+.education-item .institute {
+    color: #00ffcc;
     font-size: 16px;
-    margin-top: 5px;
-    text-align: justify;
+    margin-bottom: 5px;
 }
+
+.education-item .date {
+    color: #BDBDBD;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
 
 /* Section Contact */
 .contact {
